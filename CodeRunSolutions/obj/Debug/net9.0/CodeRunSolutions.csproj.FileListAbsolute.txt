@@ -1,0 +1,14 @@
+/Users/kaienlee/Documents/C# Code Run/CodeRunSolutions/bin/Debug/net9.0/CodeRunSolutions
+/Users/kaienlee/Documents/C# Code Run/CodeRunSolutions/bin/Debug/net9.0/CodeRunSolutions.deps.json
+/Users/kaienlee/Documents/C# Code Run/CodeRunSolutions/bin/Debug/net9.0/CodeRunSolutions.runtimeconfig.json
+/Users/kaienlee/Documents/C# Code Run/CodeRunSolutions/bin/Debug/net9.0/CodeRunSolutions.dll
+/Users/kaienlee/Documents/C# Code Run/CodeRunSolutions/bin/Debug/net9.0/CodeRunSolutions.pdb
+/Users/kaienlee/Documents/C# Code Run/CodeRunSolutions/obj/Debug/net9.0/CodeRunSolutions.GeneratedMSBuildEditorConfig.editorconfig
+/Users/kaienlee/Documents/C# Code Run/CodeRunSolutions/obj/Debug/net9.0/CodeRunSolutions.AssemblyInfoInputs.cache
+/Users/kaienlee/Documents/C# Code Run/CodeRunSolutions/obj/Debug/net9.0/CodeRunSolutions.AssemblyInfo.cs
+/Users/kaienlee/Documents/C# Code Run/CodeRunSolutions/obj/Debug/net9.0/CodeRunSolutions.csproj.CoreCompileInputs.cache
+/Users/kaienlee/Documents/C# Code Run/CodeRunSolutions/obj/Debug/net9.0/CodeRunSolutions.dll
+/Users/kaienlee/Documents/C# Code Run/CodeRunSolutions/obj/Debug/net9.0/refint/CodeRunSolutions.dll
+/Users/kaienlee/Documents/C# Code Run/CodeRunSolutions/obj/Debug/net9.0/CodeRunSolutions.pdb
+/Users/kaienlee/Documents/C# Code Run/CodeRunSolutions/obj/Debug/net9.0/CodeRunSolutions.genruntimeconfig.cache
+/Users/kaienlee/Documents/C# Code Run/CodeRunSolutions/obj/Debug/net9.0/ref/CodeRunSolutions.dll
