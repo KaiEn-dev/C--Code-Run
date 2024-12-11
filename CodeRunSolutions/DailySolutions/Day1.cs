@@ -4,7 +4,7 @@ using System.Text;
 
 public class Day1 : ChallengeDay
 {
-    public Library ChallengeLibrary { get; set; }
+    public Library? ChallengeLibrary { get; set; }
 
     public Day1()
         : base(
@@ -42,17 +42,16 @@ public class Day1 : ChallengeDay
                 AddBookUI();
                 break;
             case "3": // Get Library Info
-                ChallengeLibrary.ShowLibraryInfo();
+                ChallengeLibrary?.ShowLibraryInfo();
                 break;
             case "4": // Get Library Book List
-                ChallengeLibrary.ShowBooks();
+                ChallengeLibrary?.ShowBooks();
                 break;
             case "5": // Search Book
                 BookSearchUI();
                 break;
             default:
                 return;
-                break;
         }
         InputInterface();
     }
@@ -61,13 +60,17 @@ public class Day1 : ChallengeDay
     {
         Console.WriteLine("Create Library:");
         Console.Write("Name:");
-        string libraryName = Console.ReadLine();
+        string? libraryName = Console.ReadLine();
         Console.Write("Address:");
-        string libraryAddress = Console.ReadLine();
+        string? libraryAddress = Console.ReadLine();
         Console.Write("Operating Hours:");
-        string libraryHours = Console.ReadLine();
+        string? libraryHours = Console.ReadLine();
 
-        ChallengeLibrary = new Library(libraryName, libraryAddress, libraryHours);
+        ChallengeLibrary = new Library(
+            libraryName ?? "Unknown",
+            libraryAddress ?? "-",
+            libraryHours ?? "-"
+        );
 
         Console.WriteLine("\n! Library Created");
     }
@@ -76,13 +79,13 @@ public class Day1 : ChallengeDay
     {
         Console.WriteLine("Adding Book");
         Console.WriteLine("Title:");
-        string bookTitle = Console.ReadLine();
+        string? bookTitle = Console.ReadLine();
         Console.WriteLine("Author:");
-        string bookAuthor = Console.ReadLine();
+        string? bookAuthor = Console.ReadLine();
 
-        Book newBook = new Book(bookTitle, bookAuthor);
+        Book newBook = new Book(bookTitle = "Unknown", bookAuthor = "-");
         Console.WriteLine();
-        ChallengeLibrary.AddBooks(newBook);
+        ChallengeLibrary?.AddBooks(newBook);
 
         newBook.PrintBookInfo();
     }
@@ -90,9 +93,9 @@ public class Day1 : ChallengeDay
     public void BookSearchUI()
     {
         Console.WriteLine("Searching Book:");
-        string searchTitle = Console.ReadLine();
+        string? searchTitle = Console.ReadLine();
 
-        var searchBook = ChallengeLibrary.SearchByTitle(searchTitle);
+        var searchBook = ChallengeLibrary?.SearchByTitle(searchTitle ?? "nobook");
 
         if (searchBook != null)
         {
@@ -109,7 +112,6 @@ public class Day1 : ChallengeDay
                     break;
                 default:
                     return;
-                    break;
             }
         }
     }
@@ -168,7 +170,7 @@ public class Library
         this.Name = name;
         this.Address = address;
         this.OperatingHours = operatingHours;
-        this.Books = books ?? new Dictionary<string, Book>();
+        this.Books = books ?? [];
     }
 
     public void ShowLibraryInfo()
