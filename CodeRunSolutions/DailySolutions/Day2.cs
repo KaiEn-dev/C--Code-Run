@@ -6,13 +6,19 @@ using System.Runtime.CompilerServices;
 
 public class Day2 : ChallengeDay
 {
-    public Shop? ChallengeShop { get; set; }
-    public Cart ChallengeCart { get; set; } = new Cart();
+    public Day2Shop? ChallengeShop { get; set; }
+    public Day2Cart ChallengeCart { get; set; } = new Day2Cart();
 
     public Day2()
         : base(
             2,
-            "Design a system for an online shopping platform where customers can add items to their cart, remove items, and view the total price. Include functionality for applying discounts to the total if applicable.",
+            @"
+Shopping Cart System
+------------------------
+- Shop
+- Product
+- Cart
+",
             @"
 Key Controls:
 1. Recreate Shop
@@ -79,7 +85,7 @@ Key Controls:
         Console.WriteLine("Operating Hours:");
         string? shopOperatingHours = Console.ReadLine();
 
-        ChallengeShop = new Shop(
+        ChallengeShop = new Day2Shop(
             shopName ?? "Unknown",
             shopAddress ?? "-",
             shopOperatingHours ?? "-"
@@ -96,7 +102,7 @@ Key Controls:
         Console.WriteLine("Price:");
         decimal? productPrice = Convert.ToInt32(Console.ReadLine());
 
-        Product newProduct = new Product(productName ?? "Unknown", productPrice ?? 0);
+        Day2Product newProduct = new Day2Product(productName ?? "Unknown", productPrice ?? 0);
         ChallengeShop?.AddProduct(newProduct);
     }
 
@@ -130,17 +136,17 @@ Key Controls:
 
     public void ClearCartUI()
     {
-        ChallengeCart = new Cart();
+        ChallengeCart = new Day2Cart();
         Console.WriteLine("! Cart Cleared");
     }
 }
 
-public class Product
+public class Day2Product
 {
     public string Name { get; set; }
     public decimal Price { get; set; }
 
-    public Product(string name, decimal price)
+    public Day2Product(string name, decimal price)
     {
         this.Name = name;
         this.Price = price;
@@ -152,15 +158,15 @@ public class Product
     }
 }
 
-public class Shop
+public class Day2Shop
 {
     public string Name { get; set; }
     public string Address { get; set; }
     public string OperatingHours { get; set; }
 
-    public Dictionary<string, Product> Products { get; set; } = [];
+    public Dictionary<string, Day2Product> Products { get; set; } = [];
 
-    public Shop(string name, string address, string operatingHours)
+    public Day2Shop(string name, string address, string operatingHours)
     {
         this.Name = name;
         this.Address = address;
@@ -194,7 +200,7 @@ Product List
         }
     }
 
-    public Product? SearchProductByName(string name)
+    public Day2Product? SearchProductByName(string name)
     {
         if (Products.ContainsKey(name))
         {
@@ -208,17 +214,17 @@ Product List
         }
     }
 
-    public void AddProduct(Product product)
+    public void AddProduct(Day2Product product)
     {
         Products.Add(product.Name, product);
         Console.WriteLine("\n! Product Added");
     }
 }
 
-public class Cart
+public class Day2Cart
 {
     public string OrderId { get; private set; } = Guid.NewGuid().ToString();
-    public Dictionary<Product, int> CartList { get; set; } = [];
+    public Dictionary<Day2Product, int> CartList { get; set; } = [];
     public decimal TotalPrice { get; set; } = 0;
 
     public void DisplayCart()
@@ -244,7 +250,7 @@ Total: {TotalPrice}$
         );
     }
 
-    public void AddItem(Product product, int quantity)
+    public void AddItem(Day2Product product, int quantity)
     {
         if (CartList.ContainsKey(product))
         {
@@ -258,7 +264,7 @@ Total: {TotalPrice}$
         Console.WriteLine("! Products added");
     }
 
-    public void RemoveItem(Product product)
+    public void RemoveItem(Day2Product product)
     {
         TotalPrice -= (product.Price * CartList[product]);
         CartList.Remove(product);

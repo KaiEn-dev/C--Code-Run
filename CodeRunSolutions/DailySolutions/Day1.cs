@@ -4,12 +4,17 @@ using System.Text;
 
 public class Day1 : ChallengeDay
 {
-    public Library? ChallengeLibrary { get; set; }
+    public Day1Library? ChallengeLibrary { get; set; }
 
     public Day1()
         : base(
             1,
-            "Design a system for a library where you can manage books, track their availability, and search for them by title.",
+            @"
+Library System
+---------------------
+- Library
+- Book
+",
             @"Key Controls:
 1. Recreate Library
 2. Add Book
@@ -66,7 +71,7 @@ public class Day1 : ChallengeDay
         Console.Write("Operating Hours:");
         string? libraryHours = Console.ReadLine();
 
-        ChallengeLibrary = new Library(
+        ChallengeLibrary = new Day1Library(
             libraryName ?? "Unknown",
             libraryAddress ?? "-",
             libraryHours ?? "-"
@@ -83,7 +88,7 @@ public class Day1 : ChallengeDay
         Console.WriteLine("Author:");
         string? bookAuthor = Console.ReadLine();
 
-        Book newBook = new Book(bookTitle = "Unknown", bookAuthor = "-");
+        Day1Book newBook = new Day1Book(bookTitle = "Unknown", bookAuthor = "-");
         Console.WriteLine();
         ChallengeLibrary?.AddBooks(newBook);
 
@@ -117,13 +122,13 @@ public class Day1 : ChallengeDay
     }
 }
 
-public class Book
+public class Day1Book
 {
     public string Title { get; set; }
     public string Author { get; set; }
     public bool IsCheckedOut { get; set; } = false;
 
-    public Book(string title, string author)
+    public Day1Book(string title, string author)
     {
         this.Title = title;
         this.Author = author;
@@ -153,18 +158,18 @@ Status: {(IsCheckedOut ? "Unavailable" : "Available")}
     }
 }
 
-public class Library
+public class Day1Library
 {
     public string Name { get; set; }
     public string Address { get; set; }
     public string OperatingHours { get; set; }
-    public Dictionary<string, Book> Books { get; set; }
+    public Dictionary<string, Day1Book> Books { get; set; }
 
-    public Library(
+    public Day1Library(
         string name,
         string address,
         string operatingHours,
-        Dictionary<string, Book>? books = null
+        Dictionary<string, Day1Book>? books = null
     )
     {
         this.Name = name;
@@ -186,7 +191,7 @@ Operating Hour: {OperatingHours}
         );
     }
 
-    public Book? SearchByTitle(string title)
+    public Day1Book? SearchByTitle(string title)
     {
         if (Books.ContainsKey(title))
         {
@@ -217,7 +222,7 @@ Book List
         }
     }
 
-    public void AddBooks(Book book)
+    public void AddBooks(Day1Book book)
     {
         if (Books.ContainsKey(book.Title))
         {
